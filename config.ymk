@@ -1,0 +1,337 @@
+# GrimAC-Vulcan Hybrid Anti-Cheat Configuration  
+# Version: Hybrid-4.1  
+# Optimized for Minecraft 1.20.x - 1.21.x with Advanced Detections
+
+alerts:  
+  prefix: '&4&lGrimAC &8»'  
+  print-to-console: true  
+  format: '%prefix% &f%player% &7failed &f%check% &7(Type %type%) [VL %vl%/%max-vl%]'
+
+hover-message:  
+  - '&7Ping: &c%ping% &8| &7TPS: &c%tps% &8| &7Version: &c%version%'  
+  - '&7Client: &c%client-brand%'  
+  - '&7Location: &c%world% %x% %y% %z%'  
+  - ''  
+  - '&7Description:'  
+  - '&7%description%'  
+  - ''  
+  - '&7Click to teleport to &b%player%&7.'
+
+click-commands:  
+  - '/grim teleport %player%'
+
+# Version-Specific Settings  
+version-adaptations:  
+  1.20:  
+    movement:  
+      base-speed-multiplier: 1.02  
+      trident-multiplier: 1.05  
+      block-modifiers:  
+        ice: 1.15  
+        slime: 1.1  
+        soul_sand: 0.85  
+  1.21:  
+    movement:  
+      base-speed-multiplier: 1.03  
+      vaulting-adjustment: 0.95  
+      block-modifiers:  
+        ice: 1.16  
+        slime: 1.12  
+        soul_sand: 0.86  
+        wind_charge: 1.08  
+    combat:  
+      attack-cooldown-adjustment: 0.98  
+      new-mob-attack-range: 4.2
+
+# Enhanced Movement Checks  
+movement:  
+  base-speed:  
+    threshold: 0.0020  
+    buffer:  
+      max: 5  
+      decay: 0.15  
+  modifiers:  
+    sprinting: 1.3  
+    sneaking: 0.6  
+    creative-flight: 1.5
+
+invalid-jump:  
+  threshold: 0.0010  
+  vaulting-threshold: 0.0012  
+  buffer:  
+    max: 4  
+    decay: 0.2
+
+watersprint:  
+  enabled: true  
+  threshold: 0.0010  
+  max-violations: 8
+
+noslow:  
+  enabled: true  
+  threshold: 0.0012  
+  items:  
+    - 'BOW'  
+    - 'SHIELD'  
+    - 'CROSSBOW'  
+    - 'BRUSH'  
+    - 'WIND_CHARGE'  
+    - 'SPYGLASS'  
+  buffer:  
+    max: 4  
+    decay: 0.18
+
+fly:  
+  enabled: true  
+  threshold: 0.0012  
+  buffer:  
+    max: 5  
+    decay: 0.15  
+  creative-threshold: 0.0020
+
+elytra-fly:  
+  enabled: true  
+  max-horizontal-speed: 1.8  
+  max-vertical-speed: 0.8  
+  firework-boost-threshold: 2.5  
+  buffer:  
+    max: 4  
+    decay: 0.15
+
+jesus:  
+  enabled: true  
+  threshold: 0.0010  
+  buffer:  
+    max: 3  
+    decay: 0.2
+
+phase:  
+  enabled: true  
+  threshold: 0.0008  
+  buffer:  
+    max: 3  
+    decay: 0.1
+
+timer:  
+  enabled: true  
+  max-tick-speed: 1.05  
+  buffer:  
+    max: 3  
+    decay: 0.25
+
+blink:  
+  enabled: true  
+  max-missing-packets: 3  
+  buffer:  
+    max: 2  
+    decay: 0.3
+
+vehicle-movement:  
+  enabled: true  
+  boat-speed-threshold: 1.4  
+  horse-speed-threshold: 2.1  
+  buffer:  
+    max: 4  
+    decay: 0.18
+
+# Enhanced Combat Checks  
+combat:  
+  reach:  
+    threshold: 0.00040  
+    buffer:  
+      max: 5  
+      decay: 0.12  
+  entity-specific:  
+    players: 3.2  
+    mobs: 4.5
+
+hitbox:  
+  max-angle: 0.38  
+  buffer:  
+    max: 5  
+    decay: 0.15
+
+velocity:  
+  horizontal-threshold: 0.0012  
+  vertical-threshold: 0.0015  
+  buffer:  
+    max: 5  
+    decay: 0.1
+
+anti-knockback:  
+  enabled: true  
+  min-kb-reduction: 0.65  
+  buffer:  
+    max: 4  
+    decay: 0.2
+
+critical:  
+  enabled: true  
+  threshold: 0.0010  
+  buffer:  
+    max: 4  
+    decay: 0.2
+
+rotation:  
+  enabled: true  
+  max-rotation-speed: 240.0  
+  min-snap-angle: 20.0  
+  buffer:  
+    max: 4  
+    decay: 0.15
+
+aim-assist:  
+  enabled: true  
+  max-consistency: 95  
+  min-human-variance: 0.5  
+  buffer:  
+    max: 6  
+    decay: 0.15
+
+autoclicker:  
+  max-cps: 20  
+  min-consistency: 80  
+  buffer:  
+    max: 7  
+    decay: 0.18
+
+fastbow:  
+  min-delay: 3  
+  buffer:  
+    max: 6  
+    decay: 0.2
+
+scaffold:  
+  enabled: true  
+  place-speed-threshold: 0.0012  
+  angle-check: true  
+  buffer:  
+    max: 4  
+    decay: 0.18
+
+# Advanced Interaction Checks  
+interaction:  
+  max-block-reach: 5.5  
+  max-interaction-rate: 15  
+  buffer:  
+    max: 4  
+    decay: 0.2
+
+inventory-move:  
+  enabled: true  
+  max-move-distance: 0.2  
+  buffer:  
+    max: 3  
+    decay: 0.25
+
+ghost-interaction:  
+  enabled: true  
+  max-range: 6.0  
+  buffer:  
+    max: 3  
+    decay: 0.2
+
+# Exploit & Game Mechanics Checks  
+vaulting:  
+  enabled: true  
+  threshold: 0.0012  
+  buffer:  
+    max: 4  
+    decay: 0.15
+
+sculk-exploit:  
+  enabled: true  
+  max-vibration-frequency: 3  
+  buffer:  
+    max: 3  
+    decay: 0.25
+
+ghost-blocks:  
+  enabled: true  
+  update-range: 3  
+  buffer:  
+    max: 4  
+    decay: 0.12
+
+wind-charge:  
+  enabled: true  
+  max-velocity: 1.8  
+  buffer:  
+    max: 3  
+    decay: 0.2
+
+# Enhanced Packet & Protocol Checks  
+packet:  
+  transaction-timeout: 750  
+  max-packet-rate: 125  
+  buffer:  
+    max: 4  
+    decay: 0.15
+
+packet-spoof:  
+  enabled: true  
+  max-sequence-gap: 5  
+  buffer:  
+    max: 3  
+    decay: 0.25
+
+ping-spoof:  
+  enabled: true  
+  max-ping-spike: 180  
+  buffer:  
+    max: 3  
+    decay: 0.2
+
+inventory:  
+  fast-click-threshold: 5  
+  suspicious-swap-threshold: 4  
+  buffer:  
+    max: 4  
+    decay: 0.2
+
+# Client Validation  
+client-brand:  
+  resolve: true  
+  allowed-clients: []  
+  block-experimental-versions: true  
+  kick-message: ''
+
+# Advanced Detections  
+advanced-detections:  
+  pattern-analysis:  
+    enabled: true  
+    sample-size: 50  
+    min-human-variance: 0.3
+
+movement-prediction:  
+  enabled: true  
+  max-prediction-error: 0.25  
+  buffer:  
+    max: 5  
+    decay: 0.15
+
+# Punishments  
+punishments:  
+  enabled: true  
+  threshold-actions:  
+    10:  
+      - 'warn %player% &cSuspicious behavior detected!'  
+    20:  
+      - 'tempban %player% 30m Cheating detected (VL 20)'  
+    40:  
+      - 'ban %player% Cheating (VL 40+)'  
+  mitigation:  
+    lag-threshold: 350  
+    tps-threshold: 16.0
+
+# Messages  
+messages:  
+  version-warning: '&cYour client version has compatibility issues with 1.20+/1.21+'  
+  new-violation: '%prefix% &7New violation detected: &f%check%'  
+  mitigation-message: '%prefix% &7Check bypassed due to server lag (TPS: %tps%, Ping: %ping%)'
+
+violation-reset:  
+  interval-in-minutes: 15  
+  message: '%prefix% &7Violation data has been reset for all players.'
+
+config-version: Hybrid-4.1-1.21-ADVANCED
